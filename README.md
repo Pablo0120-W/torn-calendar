@@ -60,7 +60,8 @@ skill 会自动随机想象一个风景场景（不出现人物）并默认生�
 
 ### 其他智能体（Codex / WorkBuddy 等）
 
-将本仓库作为上下文加载后，直接引用 `SKILL.md` 的工作流程即可；生图 prompt 模板在 [references/prompt-template.md](references/prompt-template.md)（面向 gpt-image-2，竖版 1024×1536）。
+- **WorkBuddy**：下载 [release/torn-calendar.zip](release/torn-calendar.zip)，在技能市场选择"上传技能"导入即可
+- 或将本仓库作为上下文加载后，直接引用 `SKILL.md` 的工作流程；生图 prompt 模板在 [references/prompt-template.md](references/prompt-template.md)（面向 gpt-image-2，竖版 1024×1536）
 
 ## 仓库结构
 
