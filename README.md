@@ -1,6 +1,6 @@
-# Torn-Paper Calendar 📅✂️
+# Torn-Calendar 📅✂️
 
-**撕纸风插画风日历 Skill** —— 把你的照片变成法国插画家 Kaen 风格的高饱和撞色插画，撕下来贴在做旧纸张上，再叠一张带农历、节气、节日的撕纸日历卡片。
+**撕纸风插画风日历 Skill** —— 把你的照片撕成一张日历：法国插画家 Kaen 风格的高饱和撞色插画，贴在做旧纸张上，再叠一张带农历、节气、节日的撕纸日历卡片。
 
 Turn your photos into Kaen-style, candy-colored, torn-paper collage calendars — with Chinese lunar calendar, solar terms, and holidays baked in.
 
@@ -37,8 +37,8 @@ Turn your photos into Kaen-style, candy-colored, torn-paper collage calendars �
 
 ```bash
 # 克隆到 skills 目录
-git clone https://github.com/<你的用户名>/torn-paper-calendar.git
-mkdir -p ~/.claude/skills && mv torn-paper-calendar ~/.claude/skills/
+git clone https://github.com/<你的用户名>/torn-calendar.git
+mkdir -p ~/.claude/skills && mv torn-calendar ~/.claude/skills/
 
 # 安装农历依赖
 pip install lunardate

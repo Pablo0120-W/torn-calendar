@@ -1,9 +1,9 @@
 ---
-name: torn-paper-calendar
+name: torn-calendar
 description: 将用户照片转化为法国插画家 Kaen 风格的高饱和撞色插画风撕纸拼贴日历。支持单月、多月、整年生成，日历含农历、节气与中国节日。当用户要求"把照片做成日历 / 撕纸风日历 / 插画风日历 / kaen 风日历"时使用本技能。
 ---
 
-# 撕纸风插画风日历 (Torn-Paper Kaen-Style Calendar)
+# Torn-Calendar（撕纸风插画风日历）
 
 把用户的照片变成一张（或多张）"撕纸拼贴 + Kaen 高饱和插画风"的日历海报。
 
