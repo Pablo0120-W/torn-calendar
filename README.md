@@ -4,7 +4,7 @@
 
 Turn your photos into Kaen-style, candy-colored, torn-paper collage calendars — with Chinese lunar calendar, solar terms, and holidays baked in.
 
-![skill](https://img.shields.io/badge/skill-SKILL.md-blue) ![style](https://img.shields.io/badge/style-Kaen%20torn--paper-orange) ![calendar](https://img.shields.io/badge/calendar-%E5%86%9C%E5%8E%86%20%2B%20%E8%8A%82%E6%B0%94%20%2B%20%E8%8A%82%E6%97%A5-green) ![model](https://img.shields.io/badge/image-gpt--image--2-purple) ![license](https://img.shields.io/badge/license-MIT-lightgrey)
+![skill](https://img.shields.io/badge/skill-SKILL.md-blue) ![style](https://img.shields.io/badge/style-Kaen%20torn--paper-orange) ![calendar](https://img.shields.io/badge/calendar-%E5%86%9C%E5%8E%86%20%2B%20%E8%8A%82%E6%B0%94%20%2B%20%E8%8A%82%E6%97%A5-green) ![model](https://img.shields.io/badge/image-gpt--image--2-purple) ![license](https://img.shields.io/badge/license-CC%20BY--NC%204.0-lightgrey)
 
 ---
 
@@ -133,16 +133,19 @@ git clone https://github.com/Pablo0120-W/torn-calendar.git
 ```
 ├── SKILL.md                    # skill 主文件（工作流程）
 ├── references/
-│   ├── style-guide.md          # Kaen × 撕纸 风格规范与色板
-│   ├── prompt-template.md      # gpt-image-2 生图模板 + 修正话术
-│   ├── layouts.md              # 6 种排版结构（L1~L6）
-│   └── calendar-spec.md        # 日历排版规范 + 月份主题表
+│   ├── prompt-template.mdenc   # 生图模板 + 修正话术（编码存储）
+│   ├── layouts.mdenc           # 6 种排版结构 L1~L6（编码存储）
+│   ├── style-guide.mdenc       # Kaen × 撕纸 风格规范与色板（编码存储）
+│   └── calendar-spec.mdenc     # 日历排版规范 + 月份主题表（编码存储）
 ├── scripts/
-│   └── calendar_gen.py         # 日历数据（公历/农历/节气/节日）
+│   ├── calendar_gen.py         # 日历数据（公历/农历/节气/节日）
+│   └── decode_refs.py          # 运行时解码核心参考文件
 ├── examples/                   # 12 个月效果示例
 └── release/
     └── torn-calendar.zip       # WorkBuddy 等智能体的技能包
 ```
+
+> 核心提示词资产以编码形式分发（`.mdenc`），运行 `python scripts/decode_refs.py <名称>` 由智能体在运行时读取，正常使用不受影响。
 
 ## ⚠️ 已知限制
 
@@ -152,4 +155,4 @@ git clone https://github.com/Pablo0120-W/torn-calendar.git
 
 ## 📄 License
 
-MIT
+[CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/deed.zh) —— 可自由使用与改编（需署名），**禁止商用**。

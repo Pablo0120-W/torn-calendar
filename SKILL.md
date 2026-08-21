@@ -52,14 +52,23 @@ python scripts/calendar_gen.py 2026 all
 
 ### 第 3 步：抽取画面结构 + 读取模板
 
-1. 打开 [references/layouts.md](references/layouts.md)，从 L1~L5 中**随机抽取一种结构**（如 `python -c "import random; print(random.randint(1,5))"`），取得对应的 `{LAYOUT_BLOCK}` 文本。用户指定了结构则用指定值；L6 挖空式仅在用户明确要求时使用；整年生成默认每月独立随机，用户要求系列统一时锁定同一结构。
-2. 打开 [references/prompt-template.md](references/prompt-template.md)，将以下内容填入模板占位符：
+核心参考文件为编码存储（`.mdenc`），用解码脚本读取，不要尝试直接打开文件：
+
+```bash
+python scripts/decode_refs.py layouts            # 画面结构库
+python scripts/decode_refs.py prompt-template    # 生图 Prompt 模板
+python scripts/decode_refs.py style-guide        # 风格规范与色板
+python scripts/decode_refs.py calendar-spec      # 日历排版规范 + 月份主题表
+```
+
+1. 运行 `python scripts/decode_refs.py layouts` 读取画面结构库，从 L1~L5 中**随机抽取一种结构**（如 `python -c "import random; print(random.randint(1,5))"`），取得对应的 `{LAYOUT_BLOCK}` 文本。用户指定了结构则用指定值；L6 挖空式仅在用户明确要求时使用；整年生成默认每月独立随机，用户要求系列统一时锁定同一结构。
+2. 运行 `python scripts/decode_refs.py prompt-template` 读取生图模板，将以下内容填入模板占位符：
 
 - `{PHOTO_DESC}`：观察用户照片，描述主体内容（人物姿态、场景、色调）。**人物规则**：照片中有人物时保留其发型、脸型与服装特征（能认出是本人）；照片中无人物时禁止在 prompt 中要求保留人物，且须明确写明"画面中不得出现任何人物"，只做纯风景/场景插画
 - `{LAYOUT_BLOCK}`：上一步抽取的结构块
 - `{MONTH}` / `{YEAR}` / `{CALENDAR_TEXT}`：来自第 2 步脚本输出
-- `{THEME_PHRASE}`：用户指定短语，或按 [references/calendar-spec.md](references/calendar-spec.md) 的"月份主题表"自动生成
-- `{ACCENT_COLORS}`：从 Kaen 色板（见 [references/style-guide.md](references/style-guide.md)）中按月份选择 1 主色 + 1 撞色
+- `{THEME_PHRASE}`：用户指定短语，或按 calendar-spec（`python scripts/decode_refs.py calendar-spec`）的"月份主题表"自动生成
+- `{ACCENT_COLORS}`：从 Kaen 色板（`python scripts/decode_refs.py style-guide`）中按月份选择 1 主色 + 1 撞色
 
 ### 第 4 步：调用生图模型
 
@@ -78,7 +87,7 @@ python scripts/calendar_gen.py 2026 all
 3. 是否符合 Kaen 高饱和撞色（不是低饱和莫兰迪）
 4. 日历区是否被遮挡导致读不清
 
-**重试规则**：只有当上述检查不通过、图片质量确实有问题时才重试，用 [references/prompt-template.md](references/prompt-template.md) 的修正话术重新生成；检查全部通过则直接交付，不做多余生成。
+**重试规则**：只有当上述检查不通过、图片质量确实有问题时才重试，用 prompt-template（`python scripts/decode_refs.py prompt-template`）中的修正话术重新生成；检查全部通过则直接交付，不做多余生成。
 
 ## 约束
 
