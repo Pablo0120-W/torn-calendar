@@ -61,20 +61,24 @@ python scripts/calendar_gen.py 2026 all
 - `{THEME_PHRASE}`：用户指定短语，或按 [references/calendar-spec.md](references/calendar-spec.md) 的"月份主题表"自动生成
 - `{ACCENT_COLORS}`：从 Kaen 色板（见 [references/style-guide.md](references/style-guide.md)）中按月份选择 1 主色 + 1 撞色
 
-### 第 4 步：调用 gpt-image-2 生图
+### 第 4 步：调用生图模型
 
+- **默认只生成 1 次**，不要主动多次生成
+- **模型建议**：优先使用 香蕉模型（nano-banana）或 gpt-image-2，这两者对本 skill 的日历小字与撕纸质感效果最好；仅当平台不支持时再用其他模型
 - 尺寸：竖版 `1024x1536`（方形用 `1024x1024`）
-- 把用户照片与填好的 prompt 一起发给 gpt-image-2（图像编辑/参考图模式）
+- 把用户照片与填好的 prompt 一起发给生图模型（图像编辑/参考图模式）
 - 整年生成时：逐月调用，每月共享同一套风格设定，仅 `{ACCENT_COLORS}`、`{CALENDAR_TEXT}`、`{THEME_PHRASE}` 变化，保证 12 张风格统一
 
 ### 第 5 步：自检与交付
 
 对每张产出检查：
 
-1. 日历文字是否**逐字正确**（数字、农历、节气不能错、不能多不能少）——文字错误是最常见失败，错了就重生成
+1. 日历文字是否**逐字正确**（数字、农历、节气不能错、不能多不能少）——文字错误是最常见失败
 2. 撕纸毛边、纸张投影是否可见
 3. 是否符合 Kaen 高饱和撞色（不是低饱和莫兰迪）
-4. 日历区被照片遮挡导致读不清 → 重生成并在 prompt 中强调日历区留白
+4. 日历区是否被遮挡导致读不清
+
+**重试规则**：只有当上述检查不通过、图片质量确实有问题时才重试，用 [references/prompt-template.md](references/prompt-template.md) 的修正话术重新生成；检查全部通过则直接交付，不做多余生成。
 
 ## 约束
 
